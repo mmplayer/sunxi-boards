@@ -12,7 +12,7 @@ dcdc3_vol = 1250
 ldo2_vol = 3000
 ldo3_vol = 2800
 ldo4_vol = 2800
-storage_type = -1
+storage_type = 0
 
 [clock]
 pll3 = 297
@@ -76,14 +76,14 @@ standby_mode = 0
 dram_baseaddr = 0x40000000
 dram_clk = 500
 dram_type = 3
-dram_rank_num = -1
-dram_chip_density = -1
-dram_io_width = -1
-dram_bus_width = -1
+dram_rank_num = 1
+dram_chip_density = 4096
+dram_io_width = 16
+dram_bus_width = 32
 dram_cas = 9
 dram_zq = 0x7f
 dram_odt_en = 0
-dram_size = -1
+dram_size = 1024
 dram_tpr0 = 0x42d899b7
 dram_tpr1 = 0xa090
 dram_tpr2 = 0x22a00
@@ -324,7 +324,7 @@ lcd1_saturation = 57
 lcd1_hue = 50
 
 [lcd0_para]
-lcd_used = 0
+lcd_used = 1
 lcd_x = 1024
 lcd_y = 600
 lcd_dclk_freq = 51
@@ -718,14 +718,16 @@ kp_out7 = port:PH27<4><1><default><default>
 
 [usbc0]
 usb_used = 1
-usb_port_type = 0
-usb_detect_type = 0
-usb_id_gpio =
-usb_det_vbus_gpio =
+usb_port_type = 2
+usb_detect_type = 1
+usb_id_gpio = port:PH04<0><1><default><default>
+usb_det_vbus_gpio = "axp_ctrl"
 usb_drv_vbus_gpio = port:PB09<1><0><default><0>
-usb_restrict_gpio =
+usb_restrict_gpio = port:PH00<1><0><default><0>
 usb_host_init_state = 0
 usb_restric_flag = 0
+usb_restric_voltage = 3550000
+usb_restric_capacity = 5
 
 [usbc1]
 usb_used = 1
