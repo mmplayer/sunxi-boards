@@ -1,5 +1,5 @@
 [product]
-version = "100"
+version = "1.0"
 machine = "cubieboard2"
 
 [platform]
