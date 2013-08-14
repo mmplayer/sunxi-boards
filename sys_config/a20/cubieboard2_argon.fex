@@ -812,6 +812,19 @@ ap6xxx_bt_regon = port:PB05<1><default><default><0>
 ap6xxx_bt_wake = port:PI20<1><default><default><0>
 ap6xxx_bt_host_wake = port:PI21<0><default><default><0>
 
+[sdio_wifi_para]
+sdio_wifi_used = 0
+sdio_wifi_sdc_id = 3
+sdio_wifi_mod_sel = 1
+swl_n20_shdn = port:PH09<1><default><default><0>
+swl_n20_host_wakeup = port:PH10<1><default><default><1>
+swl_n20_vdd_en = port:PH11<1><default><default><0>
+swl_n20_vcc_en = port:PH12<1><default><default><0>
+
+[usb_wifi_para]
+usb_wifi_used = 0
+usb_wifi_usbc_num = 2
+
 [3g_para]
 3g_used = 0
 3g_usbc_num = 2
