@@ -884,6 +884,7 @@ leds_default_1 = 0
 leds_trigger_1 = "timer"
 leds_pin_2 = port:PH21<1><default><default><0>
 leds_name_2 = "blue:ph21:led2"
+leds_default_2 = "none"
 
 [pmu_para]
 pmu_used = 1
