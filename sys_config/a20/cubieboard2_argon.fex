@@ -822,7 +822,7 @@ swl_n20_vdd_en = port:PH11<1><default><default><0>
 swl_n20_vcc_en = port:PH12<1><default><default><0>
 
 [usb_wifi_para]
-usb_wifi_used = 0
+usb_wifi_used = 1
 usb_wifi_usbc_num = 2
 
 [3g_para]
