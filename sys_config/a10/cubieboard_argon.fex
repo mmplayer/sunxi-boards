@@ -820,7 +820,7 @@ bt_uart_id = 2
 bt_mod_type = 1
 
 [i2s_para]
-i2s_used = 1
+i2s_used = 0
 i2s_channel = 2
 i2s_mclk = port:PB05<2><1><default><default>
 i2s_bclk = port:PB06<2><1><default><default>
