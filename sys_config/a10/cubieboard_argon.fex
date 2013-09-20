@@ -11,7 +11,7 @@ ldo3_vol = 2800
 ldo4_vol = 2800
 pll4_freq = 960
 pll6_freq = 960
-power_start = 0
+power_start = 1
 storage_type = 0
 
 [card_boot]
@@ -64,7 +64,7 @@ jtag_di = port:PB17<3><default><default><default>
 
 [dram_para]
 dram_baseaddr = 0x40000000
-dram_clk = 500
+dram_clk = 480
 dram_type = 3
 dram_rank_num = 1
 dram_chip_density = 4096
