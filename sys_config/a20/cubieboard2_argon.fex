@@ -12,11 +12,11 @@ dcdc3_vol = 1250
 ldo2_vol = 3000
 ldo3_vol = 2800
 ldo4_vol = 2800
-storage_type = 0
+power_start = 1
 
 [clock]
 pll3 = 297
-pll4 = 300
+pll4 = 960
 pll6 = 600
 pll7 = 297
 pll8 = 336
@@ -74,7 +74,7 @@ standby_mode = 0
 
 [dram_para]
 dram_baseaddr = 0x40000000
-dram_clk = 500
+dram_clk = 480
 dram_type = 3
 dram_rank_num = 1
 dram_chip_density = 4096
@@ -96,7 +96,7 @@ dram_emr3 = 0x0
 
 [mali_para]
 mali_used = 1
-mali_clkdiv = 1
+mali_clkdiv = 3
 
 [emac_para]
 emac_used = 1
