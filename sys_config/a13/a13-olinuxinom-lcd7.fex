@@ -1,6 +1,6 @@
 [product]
 version = "1.0"
-machine = "A13-olinuxino-V1.0"
+machine = "A13-olinuxino-micro-V1.0"
 
 [target]
 boot_clock = 1008
@@ -14,7 +14,7 @@ pll6_freq = 720
 
 [card_boot]
 logical_start = 40960
-sprite_gpio0 =
+sprite_gpio0 = ""
 
 [card_boot0_para]
 card_ctrl = 0
@@ -50,12 +50,12 @@ dram_clk = 408
 dram_type = 3
 dram_rank_num = 1
 dram_chip_density = 2048
-dram_io_width = 8
+dram_io_width = 16
 dram_bus_width = 16
 dram_cas = 9
 dram_zq = 0x7b
 dram_odt_en = 0
-dram_size = 512
+dram_size = 256
 dram_tpr0 = 0x42d899b7
 dram_tpr1 = 0xa090
 dram_tpr2 = 0x22a00
@@ -67,7 +67,7 @@ dram_emr2 = 0x10
 dram_emr3 = 0x0
 
 [nand_para]
-nand_used = 1
+nand_used = 0
 nand_we = port:PC00<2><default><default><default>
 nand_ale = port:PC01<2><default><default><default>
 nand_cle = port:PC02<2><default><default><default>
@@ -84,19 +84,19 @@ nand_d4 = port:PC12<2><default><default><default>
 nand_d5 = port:PC13<2><default><default><default>
 nand_d6 = port:PC14<2><default><default><default>
 nand_d7 = port:PC15<2><default><default><default>
-nand_wp =
-nand_ce2 =
-nand_ce3 =
-nand_ce4 =
-nand_ce5 =
-nand_ce6 =
-nand_ce7 =
-nand_spi =
+nand_wp = ""
+nand_ce2 = ""
+nand_ce3 = ""
+nand_ce4 = ""
+nand_ce5 = ""
+nand_ce6 = ""
+nand_ce7 = ""
+nand_spi = ""
 nand_ndqs = port:PC19<2><default><default><default>
 
 [mali_para]
-mali_used = 1
-mali_clkdiv = 2
+mali_used = 0
+mali_clkdiv = 0
 
 [twi0_para]
 twi0_used = 1
@@ -136,11 +136,11 @@ spi_mosi = port:PG11<2><default><default><default>
 spi_miso = port:PG12<2><default><default><default>
 
 [spi2_para]
-spi_used = 1
+spi_used = 0
 spi_cs0 = port:PE00<4><default><default><default>
 spi_sclk = port:PE01<4><default><default><default>
-spi_mosi = port:PE02<4><default><default><default>
-spi_miso = port:PE03<4><default><default><default>
+spi_mosi = port:PB02<4><default><default><default>
+spi_miso = port:PB03<4><default><default><default>
 
 [rtp_para]
 rtp_used = 1
@@ -170,62 +170,48 @@ tkey_used = 0
 tkey_name = "hv_keypad"
 tkey_twi_id = 2
 tkey_twi_addr = 0x62
-tkey_int =
+tkey_int = ""
 
 [motor_para]
 motor_used = 0
-motor_shake =
-
-;Note the VGA output on the a13_olinuxino is not using the regular
-;A1x VGA output logic, as the A13 does not have that instead olimex clevery
-;hooked up some logic to the lcd controller to give us a VGA output
-;
-;This means that:
-;1) screen0_output_type must be set to 1
-;2) screen0_output_mode does not do anything
-;
-;Basically the entire [disp_init] section should not be touched, instead the
-;lcd0_para section can be used to changed the vga-output resolution, note
-;that this for a different resultion you also need to change the front-portal,
-;back portal and total-lines settings (good old xf86 modelines stuff, but then
-;in a different format
+motor_shake = ""
 
 [disp_init]
 disp_init_enable = 1
 disp_mode = 0
 screen0_output_type = 1
-screen0_output_mode = 1
+screen0_output_mode = 5
 screen1_output_type = 1
-screen1_output_mode = 2
+screen1_output_mode = 5
 fb0_framebuffer_num = 2
-fb0_format = 10
+fb0_format = 9
 fb0_pixel_sequence = 2
 fb0_scaler_mode_enable = 0
 fb1_framebuffer_num = 2
-fb1_format = 10
-fb1_pixel_sequence = 0
+fb1_format = 9
+fb1_pixel_sequence = 2
 fb1_scaler_mode_enable = 0
 
 [lcd0_para]
 lcd_used = 1
 lcd_x = 800
-lcd_y = 600
-lcd_dclk_freq = 40
-lcd_pwm_not_used = 1
+lcd_y = 480
+lcd_dclk_freq = 33
+lcd_pwm_not_used = 0
 lcd_pwm_ch = 0
 lcd_pwm_freq = 10000
-lcd_pwm_pol = 0
+lcd_pwm_pol = 1
 lcd_if = 0
-lcd_hbp = 216
-lcd_ht = 1056
+lcd_hbp = 46
+lcd_ht = 1055
 lcd_vbp = 23
-lcd_vt = 1256
+lcd_vt = 1050
 lcd_hv_if = 0
 lcd_hv_smode = 0
 lcd_hv_s888_if = 0
 lcd_hv_syuv_if = 0
-lcd_hv_vspw = 4
-lcd_hv_hspw = 128
+lcd_hv_vspw = 1
+lcd_hv_hspw = 30
 lcd_lvds_ch = 0
 lcd_lvds_mode = 0
 lcd_lvds_bitwidth = 0
@@ -238,15 +224,15 @@ lcd_gamma_tbl_0 = 0x0
 lcd_gamma_tbl_1 = 0x10101
 lcd_gamma_tbl_255 = 0xffffff
 lcd_bl_en_used = 0
-lcd_bl_en =
-lcd_power_used = 0
-lcd_power =
-lcd_pwm_used = 0
-lcd_pwm =
-lcd_gpio_0 =
-lcd_gpio_1 =
-lcd_gpio_2 =
-lcd_gpio_3 =
+lcd_bl_en = 
+lcd_power_used = 1
+lcd_power = port:PB10<1><0><default><1>
+lcd_pwm_used = 1
+lcd_pwm = port:PB02<2><0><default><default>
+lcd_gpio_0 = ""
+lcd_gpio_1 = ""
+lcd_gpio_2 = ""
+lcd_gpio_3 = ""
 lcdd0 = port:PD00<2><0><default><default>
 lcdd1 = port:PD01<2><0><default><default>
 lcdd2 = port:PD02<2><0><default><default>
@@ -277,7 +263,7 @@ lcdhsync = port:PD26<2><0><default><default>
 lcdvsync = port:PD27<2><0><default><default>
 
 [tv_out_dac_para]
-dac_used = 1
+dac_used = 0
 dac0_src = 0
 
 [hdmi_para]
@@ -320,16 +306,16 @@ csi_d4 = port:PE08<3><default><default><default>
 csi_d5 = port:PE09<3><default><default><default>
 csi_d6 = port:PE10<3><default><default><default>
 csi_d7 = port:PE11<3><default><default><default>
-csi_reset = port:power3<1><default><default><0>
-csi_power_en =
+csi_reset = 
+csi_power_en = ""
 csi_stby = port:PB10<1><default><default><1>
-csi_flash =
-csi_af_en =
-csi_reset_b =
-csi_power_en_b =
-csi_stby_b =
-csi_flash_b =
-csi_af_en_b =
+csi_flash = ""
+csi_af_en = ""
+csi_reset_b = ""
+csi_power_en_b = ""
+csi_stby_b = ""
+csi_flash_b = ""
+csi_af_en_b = ""
 
 [csi1_para]
 csi_used = 0
@@ -356,16 +342,16 @@ csi_iovdd_b = ""
 csi_avdd_b = ""
 csi_dvdd_b = ""
 csi_flash_pol_b = 1
-csi_reset =
-csi_power_en =
-csi_stby =
-csi_flash =
-csi_af_en =
-csi_reset_b =
-csi_power_en_b =
-csi_stby_b =
-csi_flash_b =
-csi_af_en_b =
+csi_reset = ""
+csi_power_en = ""
+csi_stby = ""
+csi_flash = ""
+csi_af_en = ""
+csi_reset_b = ""
+csi_power_en_b = ""
+csi_stby_b = ""
+csi_flash_b = ""
+csi_af_en_b = ""
 
 [mmc0_para]
 sdc_used = 1
@@ -379,21 +365,21 @@ sdc_d3 = port:PF04<2><1><2><default>
 sdc_d2 = port:PF05<2><1><2><default>
 sdc_det = port:PG00<0><0><default><default>
 sdc_use_wp = 0
-sdc_wp =
+sdc_wp = ""
 
 [mmc1_para]
 sdc_used = 0
-sdc_detmode =
-bus_width =
-sdc_cmd =
-sdc_clk =
-sdc_d0 =
-sdc_d1 =
-sdc_d2 =
-sdc_d3 =
-sdc_det =
-sdc_use_wp =
-sdc_wp =
+sdc_detmode = ""
+bus_width = ""
+sdc_cmd = ""
+sdc_clk = ""
+sdc_d0 = ""
+sdc_d1 = ""
+sdc_d2 = ""
+sdc_d3 = ""
+sdc_det = ""
+sdc_use_wp = ""
+sdc_wp = ""
 
 [mmc2_para]
 sdc_used = 0
@@ -405,40 +391,40 @@ sdc_d0 = port:PE04<4><1><2><default>
 sdc_d1 = port:PE05<4><1><2><default>
 sdc_d2 = port:PE06<4><1><2><default>
 sdc_d3 = port:PE07<4><1><2><default>
-sdc_det =
+sdc_det = ""
 sdc_use_wp = 0
-sdc_wp =
+sdc_wp = ""
 
 [ms_para]
 ms_used = 0
-ms_bs =
-ms_clk =
-ms_d0 =
-ms_d1 =
-ms_d2 =
-ms_d3 =
-ms_det =
+ms_bs = ""
+ms_clk = ""
+ms_d0 = ""
+ms_d1 = ""
+ms_d2 = ""
+ms_d3 = ""
+ms_det = ""
 
 [keypad_para]
 kp_used = 0
-kp_in_size =
-kp_out_size =
-kp_in0 =
-kp_in1 =
-kp_in2 =
-kp_in3 =
-kp_in4 =
-kp_in5 =
-kp_in6 =
-kp_in7 =
-kp_out0 =
-kp_out1 =
-kp_out2 =
-kp_out3 =
-kp_out4 =
-kp_out5 =
-kp_out6 =
-kp_out7 =
+kp_in_size = ""
+kp_out_size = ""
+kp_in0 = ""
+kp_in1 = ""
+kp_in2 = ""
+kp_in3 = ""
+kp_in4 = ""
+kp_in5 = ""
+kp_in6 = ""
+kp_in7 = ""
+kp_out0 = ""
+kp_out1 = ""
+kp_out2 = ""
+kp_out3 = ""
+kp_out4 = ""
+kp_out5 = ""
+kp_out6 = ""
+kp_out7 = ""
 
 [usbc0]
 usb_used = 1
@@ -453,8 +439,8 @@ usb_host_init_state = 0
 usb_used = 1
 usb_port_type = 1
 usb_detect_type = 0
-usb_id_gpio =
-usb_det_vbus_gpio =
+usb_id_gpio = ""
+usb_det_vbus_gpio = ""
 usb_drv_vbus_gpio = port:PG11<1><0><default><0>
 usb_host_init_state = 1
 
@@ -477,86 +463,85 @@ gsensor_used = 0
 gsensor_name = "bma222"
 gsensor_twi_id = 1
 gsensor_twi_addr = 0x18
-gsensor_int1 =
-gsensor_int2 =
+gsensor_int1 = ""
+gsensor_int2 = ""
 
 [gps_para]
 gps_used = 0
-gps_spi_id =
-gps_spi_cs_num =
-gps_lradc =
-gps_clk =
-gps_sign =
-gps_mag =
-gps_vcc_en =
-gps_osc_en =
-gps_rx_en =
+gps_spi_id = ""
+gps_spi_cs_num = ""
+gps_lradc = ""
+gps_clk = ""
+gps_sign = ""
+gps_mag = ""
+gps_vcc_en = ""
+gps_osc_en = ""
+gps_rx_en = ""
 
 [sdio_wifi_para]
 sdio_wifi_used = 0
-sdio_wifi_sdc_id =
-sdio_wifi_mod_sel =
+sdio_wifi_sdc_id = ""
+sdio_wifi_mod_sel = ""
 
 [usb_wifi_para]
-usb_wifi_used = 1
+usb_wifi_used = 0
 usb_wifi_usbc_num = 1
 
 [3g_para]
 3g_used = 0
-3g_name =
-3g_usbc_num =
-3g_on_off =
-3g_reset =
-3g_poweron =
-3g_wakeup_out =
-3g_wakeup_in =
+3g_name = ""
+3g_usbc_num = ""
+3g_on_off = ""
+3g_reset = ""
+3g_poweron = ""
+3g_wakeup_out = ""
+3g_wakeup_in = ""
 
 [gy_para]
 gy_used = 0
 gy_twi_id = 1
 gy_twi_addr = 0
-gy_int1 =
-gy_int2 =
+gy_int1 = ""
+gy_int2 = ""
 
 [ls_para]
-ls_used = 1
+ls_used = 0
 ls_name = "ltr501als"
 ls_twi_id = 1
-ls_twi_addr =
-ls_int =
+ls_twi_addr = ""
+ls_int = ""
 
 [compass_para]
 compass_used = 0
-compass_twi_id =
-compass_twi_addr =
-compass_int =
+compass_twi_id = ""
+compass_twi_addr = ""
+compass_int = ""
 
 [bt_para]
 bt_used = 0
-bt_uart_id =
-bt_mod_type =
+bt_uart_id = ""
+bt_mod_type = ""
 
 [i2s_para]
 i2s_used = 0
-i2s_channel =
-i2s_mclk =
-i2s_bclk =
-i2s_lrclk =
-i2s_dout0 =
-i2s_dout1 =
-i2s_dout2 =
-i2s_dout3 =
-i2s_din =
+i2s_channel = ""
+i2s_mclk = ""
+i2s_bclk = ""
+i2s_lrclk = ""
+i2s_dout0 = ""
+i2s_dout1 = ""
+i2s_dout2 = ""
+i2s_dout3 = ""
+i2s_din = ""
 
 [spdif_para]
 spdif_used = 0
-spdif_mclk =
-spdif_dout =
-spdif_din =
+spdif_mclk = ""
+spdif_dout = ""
+spdif_din = ""
 
 [audio_para]
 audio_used = 1
-capture_used = 1
 audio_pa_ctrl = port:PG10<1><default><default><0>
 
 [ir_para]
@@ -564,13 +549,13 @@ ir_used = 0
 ir0_rx = port:PB04<2><default><default><default>
 
 [rtc_para]
-rtc_used = 1
+rtc_used = 0
 rtc_name = "pcf8563"
 rtc_twi_id = 1
 rtc_twi_addr = 81
 
 [pmu_para]
-pmu_used = 1
+pmu_used = 0
 pmu_twi_addr = 52
 pmu_twi_id = 0
 pmu_irq_id = 0
@@ -618,7 +603,7 @@ pmu_pwrok_time = 64
 pmu_pwrnoe_time = 2000
 pmu_intotp_en = 1
 pmu_used2 = 0
-pmu_adpdet =
+pmu_adpdet = ""
 pmu_init_chgcur2 = 400
 pmu_earlysuspend_chgcur2 = 600
 pmu_suspend_chgcur2 = 1200
@@ -631,27 +616,12 @@ pmu_batdeten = 1
 key_min = 4
 key_max = 6
 
-[leds_para]
-leds_used = 1
-leds_num = 1
-leds_pin_1 = port:PG09<1><0><default><1>
-leds_name_1 = "green:pg09:led1"
-leds_default_1 = 1
-
-[tabletkeys_para]
-tabletkeys_used = 1
-key0_code = 115
-key1_code = 114
-key2_code = 139
-key3_code = 28
-key4_code = 102
-
 [gpio_para]
 gpio_used = 1
 gpio_num = 15
 gpio_pin_1 = port:PB03<1><default><default><default>
 gpio_pin_2 = port:PB04<1><default><default><default>
-gpio_pin_3 = port:PB10<1><default><default><default>
+gpio_pin_3 = port:PB10<1><default><default><1>
 gpio_pin_4 = port:PE04<0><default><default><default>
 gpio_pin_5 = port:PE05<0><default><default><default>
 gpio_pin_6 = port:PE06<0><default><default><default>
@@ -664,3 +634,10 @@ gpio_pin_12 = port:PG09<1><default><default><default>
 gpio_pin_13 = port:PG10<1><default><default><default>
 gpio_pin_14 = port:PG11<1><default><default><default>
 gpio_pin_15 = port:PB02<1><default><default><0>
+
+[leds_para]
+leds_used = 1
+leds_num = 1
+leds_pin_1 = port:PG09<1><0><default><1>
+leds_name_1 = "green:pg09:led1"
+leds_default_1 = 1

@@ -1,6 +1,6 @@
 [product]
 version = "1.0"
-machine = "A12-EVB-V1.0"
+machine = "a10s-nm307-v11"
 
 [target]
 boot_clock = 1008
@@ -57,9 +57,9 @@ dram_baseaddr = 0x40000000
 dram_clk = 432
 dram_type = 3
 dram_rank_num = 1
-dram_chip_density = 4096
+dram_chip_density = 2048
 dram_io_width = 16
-dram_bus_width = 16
+dram_bus_width = 32
 dram_cas = 9
 dram_zq = 0x7b
 dram_odt_en = 0
@@ -70,7 +70,7 @@ dram_tpr2 = 0x22a00
 dram_tpr3 = 0x0
 dram_tpr4 = 0x0
 dram_tpr5 = 0x0
-dram_emr1 = 0x4
+dram_emr1 = 0x0
 dram_emr2 = 0x10
 dram_emr3 = 0x0
 
@@ -133,12 +133,12 @@ twi0_scl = port:PB00<2><default><default><default>
 twi0_sda = port:PB01<2><default><default><default>
 
 [twi1_para]
-twi1_used = 0
+twi1_used = 1
 twi1_scl = port:PB15<2><default><default><default>
 twi1_sda = port:PB16<2><default><default><default>
 
 [twi2_para]
-twi2_used = 0
+twi2_used = 1
 twi2_scl = port:PB17<2><default><default><default>
 twi2_sda = port:PB18<2><default><default><default>
 
@@ -234,7 +234,7 @@ screen1_output_mode = 4
 fb0_framebuffer_num = 2
 fb0_format = 10
 fb0_pixel_sequence = 0
-fb0_scaler_mode_enable = 0
+fb0_scaler_mode_enable = 1
 fb1_framebuffer_num = 2
 fb1_format = 10
 fb1_pixel_sequence = 0
@@ -245,7 +245,7 @@ lcd_used = 0
 lcd_x = 1280
 lcd_y = 720
 lcd_dclk_freq = 33
-lcd_pwm_not_used = 0
+lcd_pwm_not_used = 1
 lcd_pwm_ch = 0
 lcd_pwm_freq = 10000
 lcd_pwm_pol = 0
@@ -312,19 +312,19 @@ lcdvsync = port:PD27<2><0><default><default>
 lcdgamma4iep = 22
 
 [tv_out_dac_para]
-dac_used = 0
+dac_used = 1
 dac0_src = 0
 
 [hdmi_para]
 hdmi_used = 1
 
 [csi0_para]
-csi_used = 0
+csi_used = 1
 csi_mode = 0
 csi_dev_qty = 1
 csi_stby_mode = 0
 csi_mname = "gc0308"
-csi_twi_id = 2
+csi_twi_id = 1
 csi_twi_addr = 0x42
 csi_if = 0
 csi_vflip = 0
@@ -355,7 +355,7 @@ csi_d4 = port:PE08<3><default><default><default>
 csi_d5 = port:PE09<3><default><default><default>
 csi_d6 = port:PE10<3><default><default><default>
 csi_d7 = port:PE11<3><default><default><default>
-csi_reset =
+csi_reset = port:power3<1><default><default><0>
 csi_power_en =
 csi_stby = port:PB10<1><default><default><0>
 csi_flash =
@@ -477,11 +477,11 @@ kp_out7 = port:PH15<5><1><default><default>
 
 [usbc0]
 usb_used = 1
-usb_port_type = 2
-usb_detect_type = 1
-usb_id_gpio = port:PG12<0><1><default><default>
-usb_det_vbus_gpio = port:PG00<0><0><default><default>
-usb_drv_vbus_gpio =
+usb_port_type = 1
+usb_detect_type = 0
+usb_id_gpio =
+usb_det_vbus_gpio = port:PG00<1><0><default><default>
+usb_drv_vbus_gpio = port:PB10<1><0><default><0>
 usb_host_init_state = 0
 
 [usbc1]
@@ -490,7 +490,7 @@ usb_port_type = 1
 usb_detect_type = 0
 usb_id_gpio =
 usb_det_vbus_gpio =
-usb_drv_vbus_gpio = port:PG13<1><0><default><0>
+usb_drv_vbus_gpio = port:PB10<1><0><default><0>
 usb_host_init_state = 1
 
 [usb_feature]
@@ -499,13 +499,13 @@ mass_storage_id = 1
 adb_id = 2
 manufacturer_name = "USB Developer"
 product_name = "Android"
-serial_number = "20080411"
+serial_number = "201130301"
 
 [msc_feature]
 vendor_name = "USB 2.0"
 product_name = "USB Flash Driver"
 release = 100
-luns = 2
+luns = 3
 
 [gsensor_para]
 gsensor_used = 0
@@ -530,15 +530,11 @@ gps_rx_en = port:PA07<1><default><default><0>
 [sdio_wifi_para]
 sdio_wifi_used = 1
 sdio_wifi_sdc_id = 1
-sdio_wifi_mod_sel = 7
-bcm40181_shdn = port:PE04<1><default><default><0>
-bcm40181_wakeup = port:PB17<1><default><default><1>
-bcm40181_vdd_en = port:PE05<1><default><default><0>
-bcm40181_vcc_en = port:PB18<1><default><default><0>
-
-[sdio_wifi_power_para]
-wifi_power_1 = port:power204<1><0><default><0>
-wifi_power_2 = port:power205<1><0><default><0>
+sdio_wifi_mod_sel = 10
+rtl8189es_shdn = port:PB18<1><default><default><0>
+rtl8189es_wakeup = port:PB17<1><default><default><1>
+rtl8189es_vdd_en = port:PA03<1><default><default><0>
+rtl8189es_vcc_en = port:PA04<1><default><default><0>
 
 [usb_wifi_para]
 usb_wifi_used = 0
@@ -598,8 +594,8 @@ spdif_dout = port:PB10<3><1><default><default>
 spdif_din =
 
 [audio_para]
-audio_used = 0
-capture_used = 0
+audio_used = 1
+capture_used = 1
 audio_lr_change = 0
 audio_pa_ctrl = port:PB05<1><default><default><0>
 
@@ -608,7 +604,7 @@ ir_used = 0
 ir0_rx = port:PB04<2><default><default><default>
 
 [rtc_para]
-rtc_used = 0
+rtc_used = 1
 rtc_name = "pcf8563"
 rtc_twi_id = 1
 rtc_twi_addr = 81
@@ -677,11 +673,6 @@ pmu_batdeten = 1
 key_min = 4
 key_max = 6
 
-[gpio_para]
-gpio_used = 1
-gpio_num = 1
-gpio_pin_1 = port:PB02<1><default><default><1>
-
 [gpio_init]
 pin_1 = port:PB02<1><default><default><1>
 pin_2 = port:PA00<0><default><default><default>
@@ -730,6 +721,18 @@ pin_44 = port:PD24<0><default><default><default>
 pin_45 = port:PD25<0><default><default><default>
 pin_46 = port:PD26<0><default><default><default>
 pin_47 = port:PD27<0><default><default><default>
+pin_48 = port:PE00<0><default><default><default>
+pin_49 = port:PE01<0><default><default><default>
+pin_50 = port:PE02<0><default><default><default>
+pin_51 = port:PE03<0><default><default><default>
+pin_52 = port:PE04<0><default><default><default>
+pin_53 = port:PE05<0><default><default><default>
+pin_54 = port:PE06<0><default><default><default>
+pin_55 = port:PE07<0><default><default><default>
+pin_56 = port:PE08<0><default><default><default>
+pin_57 = port:PE09<0><default><default><default>
+pin_58 = port:PE10<0><default><default><default>
+pin_59 = port:PE11<0><default><default><default>
 
 [system]
 recovery_key = port:PG02<0><1><default><default>
@@ -757,10 +760,3 @@ LV7_volt = 1000
 output_type = 3
 output_mode = 5
 auto_hpd = 1
-
-[leds_para]
-leds_used = 1
-leds_num = 1
-leds_pin_1 = port:PB02<1><0><default><0>
-leds_name_1 = "red:pb02:led1"
-leds_default_1 = 1

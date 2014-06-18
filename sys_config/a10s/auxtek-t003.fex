@@ -1,6 +1,6 @@
 [product]
 version = "1.0"
-machine = "A12-EVB-V1.0"
+machine = "a10s-avpub"
 
 [target]
 boot_clock = 1008
@@ -54,12 +54,12 @@ jtag_di = port:PB14<3><1><default><default>
 
 [dram_para]
 dram_baseaddr = 0x40000000
-dram_clk = 432
+dram_clk = 408
 dram_type = 3
 dram_rank_num = 1
-dram_chip_density = 4096
-dram_io_width = 16
-dram_bus_width = 16
+dram_chip_density = 2048
+dram_io_width = 8
+dram_bus_width = 32
 dram_cas = 9
 dram_zq = 0x7b
 dram_odt_en = 0
@@ -70,7 +70,7 @@ dram_tpr2 = 0x22a00
 dram_tpr3 = 0x0
 dram_tpr4 = 0x0
 dram_tpr5 = 0x0
-dram_emr1 = 0x4
+dram_emr1 = 0x0
 dram_emr2 = 0x10
 dram_emr3 = 0x0
 
@@ -234,7 +234,7 @@ screen1_output_mode = 4
 fb0_framebuffer_num = 2
 fb0_format = 10
 fb0_pixel_sequence = 0
-fb0_scaler_mode_enable = 0
+fb0_scaler_mode_enable = 1
 fb1_framebuffer_num = 2
 fb1_format = 10
 fb1_pixel_sequence = 0
@@ -242,8 +242,8 @@ fb1_scaler_mode_enable = 0
 
 [lcd0_para]
 lcd_used = 0
-lcd_x = 1280
-lcd_y = 720
+lcd_x = 800
+lcd_y = 480
 lcd_dclk_freq = 33
 lcd_pwm_not_used = 0
 lcd_pwm_ch = 0
@@ -312,7 +312,7 @@ lcdvsync = port:PD27<2><0><default><default>
 lcdgamma4iep = 22
 
 [tv_out_dac_para]
-dac_used = 0
+dac_used = 1
 dac0_src = 0
 
 [hdmi_para]
@@ -355,7 +355,7 @@ csi_d4 = port:PE08<3><default><default><default>
 csi_d5 = port:PE09<3><default><default><default>
 csi_d6 = port:PE10<3><default><default><default>
 csi_d7 = port:PE11<3><default><default><default>
-csi_reset =
+csi_reset = port:power3<1><default><default><0>
 csi_power_en =
 csi_stby = port:PB10<1><default><default><0>
 csi_flash =
@@ -417,7 +417,7 @@ sdc_use_wp = 0
 sdc_wp =
 
 [mmc1_para]
-sdc_used = 1
+sdc_used = 0
 sdc_detmode = 4
 bus_width = 4
 sdc_cmd = port:PG03<2><1><2><default>
@@ -477,12 +477,12 @@ kp_out7 = port:PH15<5><1><default><default>
 
 [usbc0]
 usb_used = 1
-usb_port_type = 2
-usb_detect_type = 1
-usb_id_gpio = port:PG12<0><1><default><default>
-usb_det_vbus_gpio = port:PG00<0><0><default><default>
-usb_drv_vbus_gpio =
-usb_host_init_state = 0
+usb_port_type = 1
+usb_detect_type = 0
+usb_id_gpio =
+usb_det_vbus_gpio =
+usb_drv_vbus_gpio = port:PG13<1><0><default><1>
+usb_host_init_state = 1
 
 [usbc1]
 usb_used = 1
@@ -490,7 +490,7 @@ usb_port_type = 1
 usb_detect_type = 0
 usb_id_gpio =
 usb_det_vbus_gpio =
-usb_drv_vbus_gpio = port:PG13<1><0><default><0>
+usb_drv_vbus_gpio = port:PB10<1><0><default><1>
 usb_host_init_state = 1
 
 [usb_feature]
@@ -505,7 +505,7 @@ serial_number = "20080411"
 vendor_name = "USB 2.0"
 product_name = "USB Flash Driver"
 release = 100
-luns = 2
+luns = 3
 
 [gsensor_para]
 gsensor_used = 0
@@ -528,21 +528,20 @@ gps_osc_en = port:PA06<1><default><default><0>
 gps_rx_en = port:PA07<1><default><default><0>
 
 [sdio_wifi_para]
-sdio_wifi_used = 1
+sdio_wifi_used = 0
 sdio_wifi_sdc_id = 1
-sdio_wifi_mod_sel = 7
-bcm40181_shdn = port:PE04<1><default><default><0>
-bcm40181_wakeup = port:PB17<1><default><default><1>
-bcm40181_vdd_en = port:PE05<1><default><default><0>
-bcm40181_vcc_en = port:PB18<1><default><default><0>
-
-[sdio_wifi_power_para]
-wifi_power_1 = port:power204<1><0><default><0>
-wifi_power_2 = port:power205<1><0><default><0>
+sdio_wifi_mod_sel = 2
+usi_bm01a_wl_pwr =
+usi_bm01a_wlbt_regon = port:PA02<1><default><default><0>
+usi_bm01a_wl_rst = port:PA03<1><default><default><0>
+usi_bm01a_wl_wake = port:PA01<1><default><default><0>
+usi_bm01a_bt_rst = port:PA04<1><default><default><0>
+usi_bm01a_bt_wake = port:PA05<1><default><default><0>
+usi_bm01a_bt_hostwake =
 
 [usb_wifi_para]
-usb_wifi_used = 0
-usb_wifi_usbc_num = 1
+usb_wifi_used = 1
+usb_wifi_usbc_num = 0
 
 [3g_para]
 3g_used = 0
@@ -598,7 +597,7 @@ spdif_dout = port:PB10<3><1><default><default>
 spdif_din =
 
 [audio_para]
-audio_used = 0
+audio_used = 1
 capture_used = 0
 audio_lr_change = 0
 audio_pa_ctrl = port:PB05<1><default><default><0>
@@ -677,13 +676,8 @@ pmu_batdeten = 1
 key_min = 4
 key_max = 6
 
-[gpio_para]
-gpio_used = 1
-gpio_num = 1
-gpio_pin_1 = port:PB02<1><default><default><1>
-
 [gpio_init]
-pin_1 = port:PB02<1><default><default><1>
+pin_1 = port:PB02<1><default><default><0>
 pin_2 = port:PA00<0><default><default><default>
 pin_3 = port:PA01<0><default><default><default>
 pin_4 = port:PA02<0><default><default><default>
@@ -730,6 +724,18 @@ pin_44 = port:PD24<0><default><default><default>
 pin_45 = port:PD25<0><default><default><default>
 pin_46 = port:PD26<0><default><default><default>
 pin_47 = port:PD27<0><default><default><default>
+pin_48 = port:PE00<0><default><default><default>
+pin_49 = port:PE01<0><default><default><default>
+pin_50 = port:PE02<0><default><default><default>
+pin_51 = port:PE03<0><default><default><default>
+pin_52 = port:PE04<0><default><default><default>
+pin_53 = port:PE05<0><default><default><default>
+pin_54 = port:PE06<0><default><default><default>
+pin_55 = port:PE07<0><default><default><default>
+pin_56 = port:PE08<0><default><default><default>
+pin_57 = port:PE09<0><default><default><default>
+pin_58 = port:PE10<0><default><default><default>
+pin_59 = port:PE11<0><default><default><default>
 
 [system]
 recovery_key = port:PG02<0><1><default><default>

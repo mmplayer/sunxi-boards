@@ -237,7 +237,7 @@ motor_shake = port:PA16<1><default><default><0>
 [disp_init]
 disp_init_enable = 1
 disp_mode = 0
-screen0_output_type = 1
+screen0_output_type = 3
 screen0_output_mode = 5
 screen1_output_type = 1
 screen1_output_mode = 5
@@ -281,8 +281,8 @@ lcd_gamma_correction_en = 0
 lcd_gamma_tbl_0 = 0x0
 lcd_gamma_tbl_1 = 0x10101
 lcd_gamma_tbl_255 = 0xffffff
-lcd_bl_en_used = 1
-lcd_bl_en = port:power1<1><0><default><1>
+lcd_bl_en_used = 0
+lcd_bl_en = 
 lcd_power_used = 1
 lcd_power = port:PB09<1><0><default><1>
 lcd_pwm_used = 1
@@ -609,7 +609,7 @@ spdif_din =
 
 [audio_para]
 audio_used = 1
-capture_used = 0
+capture_used = 1
 audio_lr_change = 0
 audio_pa_ctrl = port:PB05<1><default><default><0>
 
@@ -782,3 +782,18 @@ pin_30 = port:PE08<0><default><default><1>
 pin_31 = port:PE09<0><default><default><1>
 pin_32 = port:PE10<0><default><default><1>
 pin_33 = port:PE11<0><default><default><1>
+
+[leds_para]
+leds_used = 1
+leds_num = 1
+leds_pin_1 = port:PE03<1><default><default><0>
+leds_name_1 = "green:pe03:led1"
+leds_default_1 = 1
+
+[tabletkeys_para]
+tabletkeys_used = 1
+key0_code = 115
+key1_code = 114
+key2_code = 139
+key3_code = 28
+key4_code = 102
