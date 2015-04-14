@@ -879,9 +879,9 @@ ir0_rx = port:PB04<2><default><default><default>
 
 [leds_para]
 leds_used = 1
-leds_num = 2
+leds_num = 4
 leds_pin_1 = port:PH20<1><default><default><0>
-leds_name_1 = "green:ph20:led1"
+leds_name_1 = "orange:ph20:led1"
 leds_default_1 = 0
 leds_trigger_1 = "timer"
 leds_pin_2 = port:PH21<1><default><default><0>
@@ -891,7 +891,7 @@ leds_pin_3 = port:PH11<1><default><default><0>
 leds_name_3 = "white:ph11:led3"
 leds_default_3 = 0
 leds_pin_4 = port:PH07<1><default><default><0>
-leds_name_4 = "orange:ph07:led4"
+leds_name_4 = "green:ph07:led4"
 leds_default_4 = 0
 
 [pmu_para]
